@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a0f22">
+<title>Happy Birth Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,600&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #f6ece2;
+  --plum: #2a1830;
+  --plum-deep: #1a0f22;
+  --rose-soft: #f1d4d8;
+  --gold: #d8b87a;
+  --gold-soft: #efe0bf;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.12);
+
+  --font-display: "Playfair Display", serif;
+  --font-script: "Cormorant Garamond", serif;
+  --font-ui: "Quicksand", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font-script);
+  background: radial-gradient(ellipse at top, #3a2046 0%, var(--plum) 45%, var(--plum-deep) 100%);
+  color: var(--ink);
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ===================== BACKGROUND STARS ===================== */
+.bg-stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bg-stars span {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  animation: drift linear infinite;
+}
+
+@keyframes drift {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(-110vh) scale(1.4); opacity: 0; }
+}
+
+/* ===================== PAGES ===================== */
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6vh 6vw;
+  padding-top: max(6vh, env(safe-area-inset-top));
+  padding-bottom: max(6vh, env(safe-area-inset-bottom));
+  padding-left: max(6vw, env(safe-area-inset-left));
+  padding-right: max(6vw, env(safe-area-inset-right));
+}
+
+.page.active {
+  display: flex;
+  animation: fadeUp 0.9s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===================== SHARED TYPE ===================== */
+.eyebrow {
+  font-family: var(--font-ui);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--gold-soft);
+  opacity: 0.85;
+  margin-bottom: 1.2rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--rose-soft);
+  opacity: 0.85;
+  margin-bottom: 2.4rem;
+}
+
+/* ===================== PAGE 1: COUNTDOWN ===================== */
+.hero-tagline {
+  font-size: 0.95rem;
+  color: var(--rose-soft);
+  opacity: 0.75;
+  margin-bottom: 2.6rem;
+  letter-spacing: 0.02em;
+}
+
+/* ===================== GIFT BOX ===================== */
+.gift-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin-bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gift-box {
+  position: relative;
+  width: 140px;
+  height: 120px;
+  cursor: pointer;
+  z-index: 2;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.gift-box::before {
+  /* Invisible padded hit area so the gift is easy to tap on phones */
+  content: '';
+  position: absolute;
+  inset: -24px;
+  z-index: -1;
+}
+
+.gift-base {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 140px;
+  height: 80px;
+  background: linear-gradient(145deg, #d9a4b6 0%, #c98fa3 45%, #a9678a 100%);
+  border-radius: 8px;
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.35),
+    inset 0 2px 6px rgba(255,255,255,0.25),
+    inset 0 -10px 16px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.gift-base::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  height: 14px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 6px;
+  filter: blur(1px);
+}
+
+.gift-lid {
+  position: absolute;
+  top: 28px;
+  left: -6px;
+  width: 152px;
+  height: 30px;
+  background: linear-gradient(145deg, #f0c3d2 0%, #e3aebd 45%, #c98fa3 100%);
+  border-radius: 8px;
+  box-shadow:
+    0 8px 18px rgba(0,0,0,0.3),
+    inset 0 2px 5px rgba(255,255,255,0.35);
+  transform-origin: 50% 100%;
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease 0.35s;
+  z-index: 3;
+}
+
+.gift-ribbon-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 20px;
+  margin-left: -10px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-soft) 50%, var(--gold) 100%);
+  opacity: 0.95;
+  box-shadow: inset 0 0 4px rgba(255,255,255,0.4);
+}
+
+.gift-bow {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 40px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+}
+
+.bow-loop {
+  position: absolute;
+  top: 4px;
+  width: 32px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  border-radius: 50% 50% 50% 4px;
+}
+
+.bow-loop--left {
+  left: 2px;
+  transform: rotate(-25deg);
+}
+
+.bow-loop--right {
+  right: 2px;
+  transform: rotate(25deg) scaleX(-1);
+  border-radius: 50% 50% 50% 4px;
+}
+
+.bow-knot {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(255,255,255,0.5);
+}
+
+.gift-sparkle {
+  position: absolute;
+  font-size: 0.9rem;
+  color: var(--gold-soft);
+  opacity: 0;
+  animation: sparkleTwinkle 2.6s ease-in-out infinite;
+}
+
+.gift-sparkle--1 { top: -10px; left: -28px; animation-delay: 0s; }
+.gift-sparkle--2 { top: 10px; right: -32px; font-size: 0.7rem; animation-delay: 0.9s; }
+.gift-sparkle--3 { bottom: -6px; left: -36px; font-size: 0.6rem; animation-delay: 1.7s; }
+
+@keyframes sparkleTwinkle {
+  0%, 100% { opacity: 0; transform: scale(0.6) rotate(0deg); }
+  50% { opacity: 0.9; transform: scale(1.1) rotate(20deg); }
+}
+
+.gift-box.opened .gift-sparkle { animation: none; opacity: 0; }
+
+/* opened state */
+.gift-box.opened .gift-lid {
+  transform: rotate(-115deg) translate(-18px, -16px);
+  opacity: 0;
+}
+
+.gift-box.opened .gift-base {
+  animation: giftPulse 0.6s ease 0.1s;
+}
+
+@keyframes giftPulse {
+  0%, 100% { transform: scale(1); }
+  35% { transform: scale(1.08) translateY(-4px); }
+  60% { transform: scale(0.98); }
+}
+
+.gift-box.opened {
+  cursor: default;
+}
+
+.gift-box.opened .gift-base::after {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(239, 224, 191, 0.55) 0%, rgba(239, 224, 191, 0) 70%);
+  animation: giftGlow 0.9s ease-out forwards;
+}
+
+@keyframes giftGlow {
+  0% { opacity: 0; transform: scale(0.3); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: scale(2.2); }
+}
+
+/* ===================== FULL-SCREEN FLOWER BURST ===================== */
+.petal-field {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: var(--py, 50%);
+  left: var(--px, 50%);
+  opacity: 0;
+  font-size: var(--psize, 22px);
+  line-height: 1;
+  color: var(--pcolor, var(--rose-soft));
+  will-change: transform, opacity;
+  animation:
+    petalOut var(--pout-dur, 0.9s) cubic-bezier(0.16, 1, 0.3, 1) var(--pdelay, 0s) forwards,
+    petalFloat var(--pfloat-dur, 4s) ease-in-out var(--pfloat-delay, 0s) forwards;
+}
+
+.petal.ribbon {
+  width: var(--rw, 8px);
+  height: var(--rh, 36px);
+  background: var(--pcolor, var(--gold-soft));
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+@keyframes petalOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(0, 0) rotate(0deg) scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(var(--tx, 0px), var(--ty, -120px)) rotate(var(--trot, 180deg)) scale(1);
+  }
+}
+
+@keyframes petalFloat {
+  0% {
+    transform: translate(-50%, -50%) translate(var(--tx, 0px), var(--ty, -120px)) rotate(var(--trot, 180deg)) scale(1);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(var(--fx, 0px), var(--fy, 60vh)) rotate(var(--frot, 360deg)) scale(0.92);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--fx, 0px), calc(var(--fy, 60vh) + 80px)) rotate(var(--frot, 360deg)) scale(0.85);
+  }
+}
+
+/* ===================== BUTTONS ===================== */
+.btn-main {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--plum-deep);
+  background: linear-gradient(135deg, var(--gold-soft), var(--rose-soft));
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 2.2rem;
+  min-height: 48px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 10px 30px rgba(216, 168, 122, 0.25);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.btn-main:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(216, 168, 122, 0.4);
+}
+
+.btn-main:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-next {
+  margin-top: 3rem;
+}
+
+/* ===================== PAGE 2: MESSAGE ===================== */
+.message-card {
+  position: relative;
+  max-width: 560px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2.6rem 2.2rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+
+.quote-mark {
+  position: absolute;
+  top: -22px;
+  left: 28px;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+.message-heading {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 1.4rem;
+}
+
+.message-body {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--ink);
+  opacity: 0.92;
+  margin-bottom: 1.2rem;
+}
+
+.message-signature {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--rose-soft);
+  margin-top: 1.4rem;
+}
+
+/* ===================== TYPEWRITER EFFECT ===================== */
+.message-heading.typing::after,
+.message-body.typing::after,
+.message-signature.typing::after {
+  content: '|';
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--gold-soft);
+  animation: caretBlink 0.8s step-end infinite;
+}
+
+@keyframes caretBlink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+.btn-next.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+
+.btn-next {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* ===================== TIMELINE / OUR STORY ===================== */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  width: 100%;
+  max-width: 540px;
+  margin: 0.4rem 0 1rem;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 7px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), rgba(216,184,122,0.1));
+  opacity: 0.5;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 2.4rem;
+  text-align: left;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-soft), var(--gold));
+  box-shadow: 0 0 0 4px rgba(216, 184, 122, 0.15);
+}
+
+.timeline-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.2rem 1.4rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+}
+
+.timeline-date {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  opacity: 0.8;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+/* ===================== PAGE 3: GALLERY ===================== */
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 230px));
+  gap: 1.8rem 1.6rem;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.polaroid {
+  background: #fbf6ee;
+  padding: 14px 14px 30px;
+  border-radius: 6px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+  transform: rotate(var(--r, 0deg));
+  transition: transform 0.3s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) scale(1.05);
+  z-index: 2;
+}
+
+.placeholder-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #e7d3da, #d8c3e0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: #8a6f7a;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+}
+
+.placeholder-img.small {
+  font-size: 1.1rem;
+  color: #c9a3ae;
+}
+
+.polaroid-img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #e7d3da, #d8c3e0);
+}
+
+.polaroid-cap {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #6b5a63;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ===================== PAGE 4: VIDEO ===================== */
+.video-frame {
+  width: min(70vw, 320px);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  padding: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  margin-bottom: 0.6rem;
+}
+
+.video-placeholder {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3e2b4f, #1a0f22);
+  display: block;
+}
+
+.video-caption {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--rose-soft);
+  opacity: 0.6;
+}
+
+/* ===================== PAGE 5: FINAL ===================== */
+.page--final {
+  position: relative;
+  overflow: hidden;
+}
+
+.final-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  width: 100%;
+  max-width: 900px;
+}
+
+.final-content {
+  flex: 0 0 auto;
+}
+
+.side-photos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex: 0 0 auto;
+}
+
+.side-photos .polaroid {
+  width: 110px;
+}
+
+.final-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 4.4rem);
+  color: var(--ink);
+  line-height: 1.1;
+  margin: 0.6rem 0;
+  text-shadow: 0 0 30px rgba(216, 168, 122, 0.3);
+}
+
+.final-sub {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--rose-soft);
+  opacity: 0.8;
+  margin-bottom: 2.2rem;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 540px) {
+  .polaroid-grid { grid-template-columns: repeat(2, minmax(130px, 1fr)); gap: 1.2rem 1rem; }
+  .gift-wrap { width: 180px; height: 180px; }
+  .gift-box { width: 110px; height: 94px; }
+  .gift-base { width: 110px; height: 64px; }
+  .gift-lid { width: 122px; height: 24px; top: 22px; left: -6px; }
+  .final-layout { flex-direction: column; gap: 1.2rem; }
+  .side-photos { flex-direction: row; }
+  .side-photos .polaroid { width: 84px; }
+  .petal.ribbon { width: 4px; }
+  .timeline-item { padding-left: 2rem; }
+  .timeline-card { padding: 1rem 1.1rem; }
+  .timeline-title { font-size: 1.1rem; }
+  .envelope-wrap { width: min(94vw, 340px); }
+  .letter-text { font-size: 0.9rem; }
+}
+
+@media (max-width: 380px) {
+  .polaroid-grid { grid-template-columns: repeat(2, minmax(110px, 1fr)); gap: 1rem 0.8rem; }
+  .message-card { padding: 2rem 1.4rem; }
+  .letter-paper { padding: 1.1rem 1rem; }
+}
+
+/* ===================== ACCESSIBILITY ===================== */
+@media (prefers-reduced-motion: reduce) {
+  .bg-stars span { animation: none; opacity: 0.3; }
+  .page.active { animation: none; }
+}
+
+.btn-main:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 3px;
+}
+</style>
+</head>
+<body>
+
+<!-- Floating petals / stars background -->
+<div class="bg-stars" id="bgStars"></div>
+
+<!-- ===================== SECTION 1: GIFT OPENING ===================== -->
+<section class="page page--countdown" id="page-countdown">
+  <div class="eyebrow">✦ Untukmu ✦</div>
+  <p class="hero-tagline">Sesuatu yang indah sedang menunggu untukmu ♡</p>
+
+  <div class="gift-wrap" id="giftWrap">
+    <div class="gift-box" id="giftBox">
+      <span class="gift-sparkle gift-sparkle--1">✦</span>
+      <span class="gift-sparkle gift-sparkle--2">✧</span>
+      <span class="gift-sparkle gift-sparkle--3">✦</span>
+      <div class="gift-lid">
+        <div class="gift-ribbon-v"></div>
+        <div class="gift-bow">
+          <span class="bow-loop bow-loop--left"></span>
+          <span class="bow-loop bow-loop--right"></span>
+          <span class="bow-knot"></span>
+        </div>
+      </div>
+      <div class="gift-base">
+        <div class="gift-ribbon-v"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="countdown-note" id="countdownNote">⋆ Ketuk kado untuk membukanya ♡</p>
+
+  <!-- Letakkan file musik kamu di folder yang sama lalu ganti "musik.mp3" -->
+  <audio id="bgMusic" src="1.mp3" preload="auto" loop></audio>
+</section>
+
+<!-- Full-screen flower / petal burst, populated by JS when gift is opened -->
+<div class="petal-field" id="petalField"></div>
+
+<!-- ===================== SECTION 1.5: TIMELINE / CERITA KITA ===================== -->
+<section class="page page--timeline" id="page-timeline">
+  <div class="eyebrow">✦ Cerita Kita ✦</div>
+  <h2 class="section-title">Our Story</h2>
+  <p class="section-sub">Sedikit perjalanan yang sudah kita lewati bersama ♡</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-date">Awal Cerita</span>
+        <h3 class="timeline-title">Pertama Kali Bertemu</h3>
+        <p class="timeline-text">
+          Semuanya dimulai di Mataram, kota yang waktu itu kudatangi cuma
+          untuk PKL, tanpa niat sama sekali untuk jatuh hati pada siapa pun
+          di sana. Tapi rencana Tuhan kadang lucu — tanpa sengaja aku
+          bertemu dengannya. Awalnya dia cuma bertanya-tanya tentangku ke
+          teman-temanku, lalu tiba-tiba follow Instagram-ku, minta nomor
+          WhatsApp-ku, dan ternyata selama ini dia sering memperhatikanku
+          diam-diam setiap kali aku keluar atau jalan bersama teman-teman.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-date">Hari-Hari Berikutnya</span>
+        <h3 class="timeline-title">Mulai Saling Mengenal</h3>
+        <p class="timeline-text">
+          Beberapa hari setelah itu dia mulai chat, basa-basi yang awalnya
+          terasa biasa saja, tapi lama-lama jadi kebiasaan — kami chat
+          setiap hari, tanpa pernah putus. Sampai akhirnya kami janjian
+          untuk bertemu di suatu malam, jalan kaki berdua sambil makan es
+          krim. Canggung sekali rasanya waktu itu, tapi entah kenapa, dari
+          malam itulah kami jadi selalu bertemu hampir setiap hari, apalagi
+          karena rumahnya kebetulan dekat dengan kost-ku.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-date">Momen Spesial</span>
+        <h3 class="timeline-title">Kenangan yang selalu di ingat</h3>
+        <p class="timeline-text">
+          Dia mengenalkanku pada mamanya, dan mamanya benar-benar baik
+          sekali — aku diperlakukan seperti anak sendiri, sampai dipastikan
+          tidak pernah kelaparan atau kekurangan apa pun selama ngekost.
+          Ke mana pun keluarganya pergi, aku selalu diajak serta. Dia yang
+          selalu repot-repot mencariku ke kost hanya untuk memastikan aku
+          sudah makan, yang selalu menemaniku ke mana pun aku ingin pergi,
+          dan yang selalu melibatkanku dalam setiap rencananya. Dialah yang
+          mengenalkanku pada banyak hal baru di Mataram — dari jalan-jalan
+          yang sebelumnya tidak pernah kutahu, sampai tradisi-tradisi yang
+          ternyata menyimpan begitu banyak cerita, seperti praje yang
+          sebelumnya bahkan tidak aku ketahui artinya.
+        </p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-date">Sekarang</span>
+        <h3 class="timeline-title">Hari Ini</h3>
+        <p class="timeline-text">
+          Sekarang, meskipun kita sudah tidak bisa bersama lagi seperti
+          dulu, kamu tetap yang terbaik di antara semuanya — kamu tetap
+          jadi pemenangnya. Aku tidak akan pernah lupa segala kebaikanmu
+          dan keluargamu, dan aku selalu mendoakan yang terbaik untukmu, di
+          mana pun kamu berada. Terima kasih untuk semuanya, Arka ♡
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-main btn-next" data-next="page-final">Lanjut ⟶</button>
+</section>
+
+<!-- ===================== SECTION 2: HAPPY BIRTHDAY MESSAGE ===================== -->
+<section class="page page--message" id="page-message">
+  <h2 class="section-title">Happy Birthday</h2>
+
+  <div class="message-card">
+    <span class="quote-mark">❝</span>
+    <h3 class="message-heading" id="typeHeading"></h3>
+    <p class="message-body" id="typeBody1"></p>
+    <p class="message-body" id="typeBody2"></p>
+    <p class="message-signature" id="typeSign"></p>
+  </div>
+
+  <button class="btn-main btn-next" data-next="page-gallery" id="galleryBtn">Lanjut ke Galeri ⟶</button>
+</section>
+
+<!-- ===================== SECTION 3: PHOTO GALLERY ===================== -->
+<section class="page page--gallery" id="page-gallery">
+  <h2 class="section-title">Our Moments</h2>
+  <p class="section-sub">Kumpulan cerita kita, satu per satu ♡</p>
+
+  <div class="polaroid-grid">
+    <div class="polaroid" style="--r:-6deg;">
+      <img class="polaroid-img" src="o7.jpeg" alt="Senyum yang selalu bikin hari lebih cerah">
+      <p class="polaroid-cap">senyum yang selalu bikin hari lebih cerah</p>
+    </div>
+    <div class="polaroid" style="--r:4deg;">
+      <img class="polaroid-img" src="o8.jpeg" alt="Wajah paling teduh untuk dipandang">
+      <p class="polaroid-cap">wajah paling teduh untuk dipandang</p>
+    </div>
+    <div class="polaroid" style="--r:-3deg;">
+      <img class="polaroid-img" src="o9.jpeg" alt="Cantik dari segala sudut, tanpa difilter">
+      <p class="polaroid-cap">indah dari segala sudut</p>
+    </div>
+    <div class="polaroid" style="--r:5deg;">
+      <img class="polaroid-img" src="o10.jpeg" alt="Tawa yang paling kusukai">
+      <p class="polaroid-cap">Photobooth</p>
+    </div>
+    <div class="polaroid" style="--r:-4deg;">
+      <img class="polaroid-img" src="o11.jpeg" alt="Gaya santai yang tetap memesona">
+      <p class="polaroid-cap">gaya santai yang tetap memesona</p>
+    </div>
+    <div class="polaroid" style="--r:3deg;">
+      <img class="polaroid-img" src="o12.jpeg" alt="Momen kecil yang jadi favorit">
+      <p class="polaroid-cap">momen kecil yang jadi favorit</p>
+    </div>
+    <div class="polaroid" style="--r:-5deg;">
+      <img class="polaroid-img" src="o5.jpeg" alt="Mata yang selalu punya cerita">
+      <p class="polaroid-cap">mata yang selalu punya cerita</p>
+    </div>
+    <div class="polaroid" style="--r:2deg;">
+      <img class="polaroid-img" src="o6.jpeg" alt="Versi favoritku, di setiap momen">
+      <p class="polaroid-cap">versi favoritku, di setiap momen</p>
+    </div>
+  </div>
+
+  <button class="btn-main btn-next" data-next="page-video">Lanjut ke Pesan ⟶</button>
+</section>
+
+<!-- ===================== SECTION 4: VIDEO MESSAGE ===================== -->
+<section class="page page--video" id="page-video">
+  <h2 class="section-title">A Moment For You</h2>
+  <p class="section-sub">✦ a special video message ✦</p>
+
+  <div class="video-frame">
+    <video class="video-placeholder" id="storyVideo" src="v1.mp4" controls playsinline>
+      Browser kamu tidak mendukung tag video.
+    </video>
+  </div>
+
+  <p class="video-caption">birthday wishes ⟶</p>
+
+  <button class="btn-main btn-next" data-next="page-final">Kembali ke Hari Spesialmu ⟶</button>
+</section>
+
+<!-- ===================== SECTION 5: FINAL / SPECIAL DAY ===================== -->
+<section class="page page--final" id="page-final">
+  <div class="final-layout">
+    <div class="side-photos side-photos--left">
+      <div class="polaroid" style="--r:-6deg;"><img class="polaroid-img" src="o1.jpeg" alt="Foto kenangan 1"></div>
+      <div class="polaroid" style="--r:4deg;"><img class="polaroid-img" src="o2.jpeg" alt="Foto kenangan 2"></div>
+      <div class="polaroid" style="--r:-3deg;"><img class="polaroid-img" src="o3.jpeg" alt="Foto kenangan 3"></div>
+    </div>
+
+    <div class="final-content">
+      <div class="eyebrow">✦ Selamat Menikmati Hari Ini ✦</div>
+      <h2 class="final-title">Your<br>Special Day</h2>
+      <p class="final-sub">Created with love, just for you</p>
+      <button class="btn-main btn-next" data-next="page-message">♡ Buka Pesan Untukmu ♡</button>
+    </div>
+
+    <div class="side-photos side-photos--right">
+      <div class="polaroid" style="--r:5deg;"><img class="polaroid-img" src="o4.jpeg" alt="Foto kenangan 4"></div>
+      <div class="polaroid" style="--r:-4deg;"><img class="polaroid-img" src="o5.jpeg" alt="Foto kenangan 5"></div>
+      <div class="polaroid" style="--r:3deg;"><img class="polaroid-img" src="o6.jpeg" alt="Foto kenangan 6"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ===================== BACKGROUND STARS =====================
+(function generateStars() {
+  const container = document.getElementById('bgStars');
+  const total = 40;
+  for (let i = 0; i < total; i++) {
+    const star = document.createElement('span');
+    const size = Math.random() * 3 + 1.5;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.bottom = `-10px`;
+    star.style.animationDuration = `${Math.random() * 14 + 10}s`;
+    star.style.animationDelay = `${Math.random() * 12}s`;
+    container.appendChild(star);
+  }
+})();
+
+// ===================== GIFT BOX OPENING + FLOWER BURST ===================== 
+const giftBox = document.getElementById('giftBox');
+const petalField = document.getElementById('petalField');
+const countdownNote = document.getElementById('countdownNote');
+const bgMusic = document.getElementById('bgMusic');
+
+const petalShapes = ['❀', '✿', '❁', '✾', '♡', '❋', '✦', '✧', '❉', '🌸'];
+const petalColors = ['#efe0bf', '#f1d4d8', '#d8b87a', '#e3aebd', '#fbf6ee', '#c98fa3', '#f6ece2'];
+
+function launchPetalBurst() {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  // Fewer particles on small/low-power screens to keep things smooth
+  const isSmallScreen = vw < 600;
+  const flowerCount = isSmallScreen ? 70 : 110;
+  const ribbonCount = isSmallScreen ? 30 : 50;
+  const total = flowerCount + ribbonCount;
+
+  for (let i = 0; i < total; i++) {
+    const petal = document.createElement('span');
+    const isRibbon = i >= flowerCount;
+    petal.className = isRibbon ? 'petal ribbon' : 'petal';
+    if (!isRibbon) {
+      petal.textContent = petalShapes[Math.floor(Math.random() * petalShapes.length)];
+    }
+
+    const startX = vw / 2;
+    const startY = vh / 2;
+
+    const angle = Math.random() * Math.PI * 2;
+    const burstDist = 100 + Math.random() * (isSmallScreen ? 240 : 340);
+    const tx = Math.cos(angle) * burstDist;
+    const ty = Math.sin(angle) * burstDist - 60;
+
+    const driftX = (Math.random() - 0.5) * 220;
+    const fx = tx + driftX;
+    const fy = Math.max(vh * 0.5, vh - startY - 40) + Math.random() * vh * 0.35;
+
+    petal.style.setProperty('--px', `${startX}px`);
+    petal.style.setProperty('--py', `${startY}px`);
+    petal.style.setProperty('--tx', `${tx}px`);
+    petal.style.setProperty('--ty', `${ty}px`);
+    petal.style.setProperty('--fx', `${fx}px`);
+    petal.style.setProperty('--fy', `${fy}px`);
+    petal.style.setProperty('--trot', `${(Math.random() > 0.5 ? 1 : -1) * (120 + Math.random() * 240)}deg`);
+    petal.style.setProperty('--frot', `${(Math.random() > 0.5 ? 1 : -1) * (360 + Math.random() * 360)}deg`);
+    petal.style.setProperty('--pcolor', petalColors[Math.floor(Math.random() * petalColors.length)]);
+    petal.style.setProperty('--pout-dur', `${0.7 + Math.random() * 0.6}s`);
+    petal.style.setProperty('--pdelay', `${Math.random() * 0.6}s`);
+    petal.style.setProperty('--pfloat-dur', `${3.5 + Math.random() * 2.5}s`);
+    petal.style.setProperty('--pfloat-delay', `${0.7 + Math.random() * 0.6}s`);
+
+    if (isRibbon) {
+      petal.style.setProperty('--rw', `${5 + Math.random() * 5}px`);
+      petal.style.setProperty('--rh', `${24 + Math.random() * 30}px`);
+    } else {
+      petal.style.setProperty('--psize', `${14 + Math.random() * 22}px`);
+    }
+
+    petalField.appendChild(petal);
+  }
+
+  setTimeout(() => {
+    petalField.innerHTML = '';
+  }, 7500);
+}
+
+giftBox.addEventListener('click', () => {
+  if (giftBox.classList.contains('opened')) return;
+
+  giftBox.classList.add('opened');
+  launchPetalBurst();
+  countdownNote.textContent = '✦ Selamat membuka kado... ✦';
+
+  if (bgMusic) {
+    bgMusic.volume = 0.6;
+    bgMusic.play().catch(() => {
+      // Browser may block autoplay until user gesture; this click counts as one,
+      // but if a music file hasn't been added yet this will just fail silently.
+    });
+  }
+
+  // Let the flowers and ribbons swirl and float across the screen before moving on
+  setTimeout(() => {
+    showPage('page-timeline');
+  }, 5800);
+});
+
+// ===================== PAGE NAVIGATION =====================
+const pages = document.querySelectorAll('.page');
+
+function showPage(id) {
+  pages.forEach(page => {
+    page.classList.toggle('active', page.id === id);
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (id === 'page-message') {
+    startTypewriter();
+  }
+}
+
+// Show first page on load
+showPage('page-countdown');
+
+// All "next" buttons
+document.querySelectorAll('.btn-next').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const nextId = btn.getAttribute('data-next');
+    showPage(nextId);
+  });
+});
+
+// ===================== VIDEO <-> BACKGROUND MUSIC SYNC =====================
+const storyVideo = document.getElementById('storyVideo');
+let bgMusicWasPlaying = false;
+
+if (storyVideo && bgMusic) {
+  // When the story video starts playing, pause the background music
+  storyVideo.addEventListener('play', () => {
+    if (!bgMusic.paused) {
+      bgMusicWasPlaying = true;
+      bgMusic.pause();
+    }
+  });
+
+  // When the video is paused or finishes, resume the background music
+  const resumeBgMusic = () => {
+    if (bgMusicWasPlaying) {
+      bgMusic.play().catch(() => {
+        // Autoplay may be blocked; user interaction with the video counts
+        // as a gesture though, so this should generally work.
+      });
+      bgMusicWasPlaying = false;
+    }
+  };
+
+  storyVideo.addEventListener('pause', resumeBgMusic);
+  storyVideo.addEventListener('ended', resumeBgMusic);
+}
+
+// ===================== TYPEWRITER EFFECT (HAPPY BIRTHDAY PAGE) =====================
+const typeLines = [
+  { el: document.getElementById('typeHeading'), text: 'Happy birthday arkaa', speed: 90 },
+  { el: document.getElementById('typeBody1'), text: 'selamat ulang tahun arkaa!! aku udah janji jadi yang pertama ucapin kamu hehehe Hari ini adalah harinya kamu--- semoga semua doa baik yang kamu panjatkan dikabulkan, semua impian dan rencana yang kamu susun berjalan lancar, jangan pernah menyerah, tetap berperoses ya... aku selalu suport kamu walaupun dari jauh, semoga dimanapun kamu berada selalu dikelilingi kebahagiaan dan orang orang baik', speed: 45 },
+  { el: document.getElementById('typeBody2'), text: 'walaupun kita udh gabisa sama sama lagi...Terima kasih pernah menjadi bagian terbahagia dari hidup aku, terimakasih untuk semua kebaikan dan usaha usaha kamu buat ngebahagian aku. Semoga di usia kamu yang menginjak 19 ini kamu menjadi pribadi yang lebih baik, semoga semesta selalu berpihak ke kamu🤍🫶🏻', speed: 45 },
+  { el: document.getElementById('typeSign'), text: '— dengan cinta, orang yang mencintaimu setulus hati 🎂', speed: 70 }
+];
+
+const galleryBtn = document.getElementById('galleryBtn');
+let typewriterStarted = false;
+
+function typeLine(line, onDone) {
+  const { el, text, speed } = line;
+  el.textContent = '';
+  el.classList.add('typing');
+
+  let i = 0;
+  const interval = setInterval(() => {
+    el.textContent += text.charAt(i);
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      el.classList.remove('typing');
+      onDone();
+    }
+  }, speed);
+}
+
+function startTypewriter() {
+  if (typewriterStarted) return;
+  typewriterStarted = true;
+
+  galleryBtn.classList.add('hidden');
+
+  let index = 0;
+  function next() {
+    if (index >= typeLines.length) {
+      galleryBtn.classList.remove('hidden');
+      return;
+    }
+    const line = typeLines[index];
+    index++;
+    setTimeout(() => typeLine(line, next), 250);
+  }
+  next();
+}
+
+// ===================== TYPEWRITER EFFECT (HAPPY BIRTHDAY PAGE) =====================</script>
+</body>
+</html>
